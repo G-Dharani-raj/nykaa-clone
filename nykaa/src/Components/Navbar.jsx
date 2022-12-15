@@ -25,11 +25,11 @@ import {
 } from "@chakra-ui/icons";
 import BrandsSide1 from "./BrandsSide1";
 import Categories from "./Categories";
-import { Link as Rink } from "react-router-dom";
+import { Link as Rink, Navigate, useNavigate } from "react-router-dom";
 
 export default function WithSubnavigation() {
 	const { isOpen, onToggle } = useDisclosure();
-
+	const navigate = useNavigate();
 	return (
 		<Box>
 			<Flex
@@ -69,9 +69,17 @@ export default function WithSubnavigation() {
 						src="https://logos-download.com/wp-content/uploads/2021/01/Nykaa_Logo-700x229.png"
 						alt="icon"
 						// style={{ width: "5%" }}
-						width={{ base: "2.8%", sm: "50%", md: "10%", lg: "3%" }}
+						width={{
+							base: "50%",
+							sm: "50%",
+							md: "10%",
+							lg: "5%",
+						}}
 						_hover={{
 							cursor: "pointer",
+						}}
+						onClick={() => {
+							navigate("/");
 						}}
 					/>
 

@@ -13,14 +13,14 @@ import {
 export default function Product({
 	brand,
 	category,
-	image_link,
+	api_featured_image,
 	name,
 	price,
 	product_colors = [],
 	product_type,
 }) {
 	const colors = product_colors;
-	console.log(colors.length);
+	// console.log(colors.length);
 	return (
 		<Center py={12}>
 			<Box
@@ -33,6 +33,8 @@ export default function Product({
 				rounded={"lg"}
 				pos={"relative"}
 				zIndex={1}
+				height={500}
+				m={"auto"}
 			>
 				<Box
 					rounded={"lg"}
@@ -47,7 +49,7 @@ export default function Product({
 						pos: "absolute",
 						top: 5,
 						left: 0,
-						backgroundImage: `url(${image_link})`,
+						backgroundImage: `url(${api_featured_image})`,
 						filter: "blur(15px)",
 						zIndex: -1,
 					}}
@@ -59,13 +61,14 @@ export default function Product({
 				>
 					<Image
 						rounded={"lg"}
-						height={"auto"}
+						height={300}
 						width={282}
 						objectFit={"cover"}
-						src={image_link}
+						src={api_featured_image}
 					/>
 					{/* <img
-						src={image_link}
+						src={api_featured_image
+}
 						alt={name}
 						width="80%"
 						marginLeft="50%"
@@ -88,12 +91,17 @@ export default function Product({
 						{name}
 					</Heading>
 					<Stack direction={"row"} align={"center"}>
-						<Text fontWeight={800} fontSize={"xl"}>
+						<Text fontWeight={400} fontSize={"xl"}>
 							${price}
 						</Text>
 					</Stack>
 					{colors.length !== 0 ? (
-						<SimpleGrid columns={[5]} spacing={5}>
+						<SimpleGrid
+							columns={[5]}
+							spacing={5}
+							height={10}
+							overflowY={"scroll"}
+						>
 							{colors.map((ele, i) => {
 								return (
 									<div

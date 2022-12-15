@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Image, SimpleGrid } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 const brandslinks = [
 	{
 		name: "Almay",
@@ -106,17 +107,19 @@ const brandslinks = [
 const BrandsSide1 = () => {
 	return (
 		<SimpleGrid columns={[1, 2, 3, 4]} spacing={10}>
-			{brandslinks.map(({ src, alt }, index) => (
-				<Box width="100px" key={index}>
-					<Image
-						src={src}
-						alt={alt}
-						width={{ base: `100%` }}
-						_hover={{
-							cursor: "pointer",
-						}}
-					/>
-				</Box>
+			{brandslinks.map(({ src, alt, value }, index) => (
+				<Link to={`/brands/${value}`} key={index}>
+					<Box width="100px">
+						<Image
+							src={src}
+							alt={alt}
+							width={{ base: `100%` }}
+							_hover={{
+								cursor: "pointer",
+							}}
+						/>
+					</Box>
+				</Link>
 			))}
 		</SimpleGrid>
 	);

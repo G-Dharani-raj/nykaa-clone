@@ -1,0 +1,30 @@
+/* .productsCarousel {
+	width: 70%;
+	margin: auto;
+} */
+
+.card {
+	/* border: 1px solid black; */
+	text-align: center;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	/* display: flex; */
+	/* width: 70%; */
+	/* margin: 0 -100px 0 0; */
+	height: 40vh;
+}
+
+.cardTop img {
+	width: 70%;
+	margin: auto;
+}
+
+/* .slick-slide > div {
+	margin: 0 10px;
+}
+.slick-list {
+	margin: 0 -10px;
+} */
+
+.prevButton {
+	background: green;
+}

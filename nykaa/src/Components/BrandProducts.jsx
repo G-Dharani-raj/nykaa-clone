@@ -19,7 +19,7 @@ const BrandProducts = () => {
 			console.error(error);
 		}
 	}, [brand]);
-	console.log(brand);
+	console.log(data);
 	return (
 		<SimpleGrid
 			columns={[1, 2, 3, 4]}
@@ -32,7 +32,7 @@ const BrandProducts = () => {
 					id,
 					brand,
 					category,
-					image_link,
+					api_featured_image,
 					name,
 					price,
 					product_colors,
@@ -43,7 +43,7 @@ const BrandProducts = () => {
 							key={id}
 							brand={brand}
 							category={category}
-							image_link={image_link}
+							api_featured_image={api_featured_image}
 							name={name}
 							price={price}
 							product_colors={product_colors}

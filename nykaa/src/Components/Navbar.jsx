@@ -37,7 +37,9 @@ export default function WithSubnavigation() {
 	const navigate = useNavigate();
 	const { isAuth, token, logoutFN, setToken, setAuth } =
 		useContext(AuthContext);
-	const cart = JSON.parse(localStorage.getItem("cart")).length || 0;
+	let cart = JSON.parse(localStorage.getItem("cart")) || [];
+	cart = cart.length;
+
 	return (
 		<Box>
 			<Flex

@@ -11,7 +11,7 @@ const BrandProducts = () => {
 		try {
 			axios
 				.get(
-					`http://makeup-api.herokuapp.com/api/v1/products.json?brand=${brand}`
+					`https://makeup-api.herokuapp.com/api/v1/products.json?brand=${brand}`
 				)
 				.then((response) => setData(response.data))
 				.catch((error) => console.error(error));

@@ -6,6 +6,10 @@ import BrandsPage from "../Pages/BrandsPage";
 import BrandProducts from "../Components/BrandProducts";
 import ProductsPage from "../Pages/ProductsPage";
 import Home from "../Pages/Home";
+import SignInpage from "../Pages/SignInpage";
+import SignupPage from "../Pages/SignUpPage";
+import CartPage from "../Pages/CartPage";
+import IndividualProduct from "../Pages/IndividualProduct";
 const AllRoutes = () => {
 	return (
 		<Routes>
@@ -16,6 +20,10 @@ const AllRoutes = () => {
 				path="/categories/:product_type"
 				element={<ProductsPage />}
 			/>
+			<Route path="/:id" element={<IndividualProduct />} />
+			<Route path="/signin" element={<SignInpage />} />
+			<Route path="/signup" element={<SignupPage />} />
+			<Route path="/cart" element={<CartPage />} />
 			<Route path="/dummy" element={<Dummy />} />
 		</Routes>
 	);

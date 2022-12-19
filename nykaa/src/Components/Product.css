@@ -1,0 +1,6 @@
+.card::-webkit-scrollbar {
+	display: none;
+}
+.card {
+	text-align: center;
+}

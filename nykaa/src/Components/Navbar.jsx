@@ -16,6 +16,7 @@ import {
 	useDisclosure,
 	Container,
 	Image,
+	Badge,
 } from "@chakra-ui/react";
 import {
 	HamburgerIcon,
@@ -26,10 +27,17 @@ import {
 import BrandsSide1 from "./BrandsSide1";
 import Categories from "./Categories";
 import { Link as Rink, Navigate, useNavigate } from "react-router-dom";
+import SignInpage from "../Pages/SignInpage";
+import { AuthContext } from "../Contexts/AuthContext";
+import { useContext } from "react";
+import { HiOutlineShoppingCart } from "react-icons/hi";
 
 export default function WithSubnavigation() {
 	const { isOpen, onToggle } = useDisclosure();
 	const navigate = useNavigate();
+	const { isAuth, token, logoutFN, setToken, setAuth } =
+		useContext(AuthContext);
+	const cart = JSON.parse(localStorage.getItem("cart")).length || 0;
 	return (
 		<Box>
 			<Flex
@@ -88,35 +96,91 @@ export default function WithSubnavigation() {
 					</Flex>
 				</Flex>
 
-				<Stack
-					flex={{ base: 1, md: 0 }}
-					justify={"flex-end"}
-					direction={"row"}
-					spacing={6}
-				>
-					<Button
-						as={"a"}
-						fontSize={"sm"}
-						fontWeight={400}
-						variant={"link"}
-						href={"#"}
+				{!isAuth ? (
+					<Stack
+						flex={{ base: 1, md: 0 }}
+						justify={"flex-end"}
+						direction={"row"}
+						spacing={6}
 					>
-						Sign In
-					</Button>
+						<Button
+							as={"a"}
+							fontSize={"sm"}
+							fontWeight={400}
+							variant={"link"}
+							onClick={() => navigate("/signin")}
+							_hover={{
+								cursor: "pointer",
+							}}
+						>
+							Sign In
+						</Button>
+						<Button
+							display={{ base: "none", md: "inline-flex" }}
+							fontSize={"sm"}
+							fontWeight={600}
+							color={"white"}
+							bg={"pink.400"}
+							// variant={"link"}
+							href={"#"}
+							onClick={() => navigate("/signup")}
+							_hover={{
+								bg: "pink.300",
+							}}
+						>
+							Sign Up
+						</Button>
+					</Stack>
+				) : (
 					<Button
 						display={{ base: "none", md: "inline-flex" }}
 						fontSize={"sm"}
 						fontWeight={600}
 						color={"white"}
 						bg={"pink.400"}
+						// variant={"link"}
 						href={"#"}
+						onClick={() => {
+							logoutFN();
+							navigate("/");
+						}}
 						_hover={{
 							bg: "pink.300",
 						}}
 					>
-						Sign Up
+						Sign Out
 					</Button>
-				</Stack>
+				)}
+				<Button
+					display={{ base: "none", md: "inline-flex" }}
+					fontSize={"sm"}
+					fontWeight={800}
+					color={"black"}
+					// variant={"link"}
+					href={"#"}
+					onClick={() => navigate("/cart")}
+					_hover={{
+						bg: "black",
+						color: "white",
+					}}
+				>
+					<HiOutlineShoppingCart />
+					{cart > 0 ? (
+						<div
+							style={{
+								height: "8px",
+								width: "8px",
+								borderRadius: "100%",
+								backgroundColor: "red",
+								position: "absolute",
+								top: "15%",
+								left: "60%",
+							}}
+						>
+							<p style={{ visibility: "hidden" }}>1</p>
+						</div>
+					) : null}
+				</Button>
 			</Flex>
 
 			<Collapse in={isOpen} animateOpacity>

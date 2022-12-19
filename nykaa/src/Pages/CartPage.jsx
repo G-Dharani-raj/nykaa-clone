@@ -1,18 +1,21 @@
 import {
 	Box,
-	Text,
+	Button,
+	Center,
+	Flex,
+	IconButton,
 	Image,
 	SimpleGrid,
-	VStack,
-	IconButton,
+	Text,
 	Tooltip,
+	VStack,
 } from "@chakra-ui/react";
-import "./Product.css";
+import React from "react";
 import { TbShoppingCartPlus } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
-import React from "react";
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-export default function Product({
+// import Product from "../Components/Product";
+
+function Product({
 	id,
 	brand,
 	category,
@@ -22,13 +25,15 @@ export default function Product({
 	product_colors = [],
 	product_type,
 	description,
+	index,
+	remove_item,
 }) {
 	const colors = product_colors;
 	const navigate = useNavigate();
 	// const [cart, setCart] = React.useState(
 	// 	JSON.parse(localStorage.getItem("cart")) || []
 	// );
-
+	console.log(index);
 	return (
 		<Box
 			bg="#F6F6F6"
@@ -74,7 +79,7 @@ export default function Product({
 				<Text fontSize={"sm"}>{brand}</Text>
 				<Text fontSize={"xl"}>{name}</Text>
 				<Text fontSize={"sm"}>${price}</Text>
-				<IconButton
+				<Button
 					icon={<TbShoppingCartPlus />}
 					minW={40}
 					bg="#E91D63"
@@ -88,20 +93,12 @@ export default function Product({
 						bg: "green",
 					}}
 					onClick={() => {
-						cart.push({
-							id,
-							brand,
-							name,
-							price,
-							description,
-							product_type,
-							api_featured_image,
-							product_colors,
-						});
-
-						localStorage.setItem("cart", JSON.stringify(cart));
+						console.log(index);
+						remove_item(index);
 					}}
-				/>
+				>
+					Remove from Cart
+				</Button>
 				{colors.length > 0 ? (
 					<SimpleGrid columns={[1, 2, 3, 4]} spacing={2}>
 						{colors.map((ele, i) => {
@@ -130,3 +127,60 @@ export default function Product({
 		</Box>
 	);
 }
+
+const CartPage = () => {
+	let cart = JSON.parse(localStorage.getItem("cart")) || [];
+	console.log(cart);
+	let total = 0;
+	const [cproducts, setC] = React.useState(false);
+	const remove_item = (index) => {
+		setC(true);
+		let cart = JSON.parse(localStorage.getItem("cart")) || [];
+		cart.splice(index, 1);
+		localStorage.setItem("cart", JSON.stringify(cart));
+	};
+	React.useEffect(() => {
+		setC(false);
+	}, [cproducts]);
+	return (
+		<>
+			<Flex gap={"10%"}>
+				<SimpleGrid columns={[1, 2, 3, 4]} spacing={4} width={"70%"}>
+					{cart.map((ele, index) => {
+						total = total + Number(ele.price);
+						console.log(index);
+						return (
+							<Product
+								key={index}
+								index={index}
+								id={ele.id}
+								brand={ele.brand}
+								category={ele.category}
+								api_featured_image={ele.api_featured_image}
+								name={ele.name}
+								price={ele.price}
+								product_colors={ele.product_colors}
+								product_type={ele.product_type}
+								description={ele.description}
+								remove_item={remove_item}
+							/>
+						);
+					})}
+				</SimpleGrid>
+				<Center>
+					<VStack>
+						<Text>
+							Items in cart: <span>{cart.length}</span>
+						</Text>
+						<Text>
+							Total: $<span>{total}</span>
+						</Text>
+						<Button colorScheme="blue">Proceed to Payment</Button>
+					</VStack>
+				</Center>
+			</Flex>
+		</>
+	);
+};
+
+export default CartPage;

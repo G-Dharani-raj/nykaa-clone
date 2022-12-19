@@ -1,4 +1,4 @@
-import { Box, Image } from "@chakra-ui/react";
+import { Box, HStack, Image, SimpleGrid, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 export const dummy_data = [
 	{
@@ -416,13 +416,89 @@ export const dummy_data = [
 const Dummy = () => {
 	return (
 		<>
-			<Box bg="black" maxW={300} border="1px">
+			<Box
+				bg="white"
+				maxW={300}
+				// border="1px"
+				shadow="rgba(0, 0, 0, 0.24) 0px 3px 8px"
+			>
 				<Image
 					src={
 						"//s3.amazonaws.com/donovanbailey/products/api_featured_images/000/000/980/original/data?1514082769"
 					}
 					alt="test"
+					w={"80%"}
+					m={"auto"}
+					objectFit={"cover"}
+					transition={"all .3s ease"}
+					_hover={{
+						transition: "all .3s ease",
+						w: "90%",
+						zIndex: "2",
+					}}
 				/>
+				<VStack>
+					<Text fontSize={"sm"}>Brand</Text>
+					<Text fontSize={"xl"}>Name</Text>
+					<Text fontSize={"sm"}>Price</Text>
+					<SimpleGrid columns={[1, 2, 3, 4]} spacing={2}>
+						{[
+							{
+								hex_value: "#FFF0E2",
+								colour_name: "Blonde",
+							},
+							{
+								hex_value: "#F7EFE4",
+								colour_name: "Taupe",
+							},
+							{
+								hex_value: "#F5EBE2",
+								colour_name: "Soft Brown",
+							},
+							{
+								hex_value: "#FBEFE3",
+								colour_name: "Caramel",
+							},
+							{
+								hex_value: "#FBEBDB",
+								colour_name: "Auburn",
+							},
+							{
+								hex_value: "#F6EDE4",
+								colour_name: "Brunette",
+							},
+							{
+								hex_value: "#F6EBE5",
+								colour_name: "Espresso",
+							},
+							{
+								hex_value: "#F7EDE4",
+								colour_name: "Ash Brown",
+							},
+							{
+								hex_value: "#E1E1E1",
+								colour_name: "Black",
+							},
+						].map((ele, i) => {
+							return (
+								<div
+									key={i}
+									style={{
+										height: "20px",
+										widht: "25px",
+										backgroundColor: `${ele.hex_value}`,
+										borderRadius: "50%",
+										display: "inline-block",
+									}}
+								>
+									<h1 style={{ visibility: "hidden" }}>
+										tex
+									</h1>
+								</div>
+							);
+						})}
+					</SimpleGrid>
+				</VStack>
 			</Box>
 		</>
 	);

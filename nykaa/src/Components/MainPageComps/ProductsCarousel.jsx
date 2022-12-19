@@ -3,7 +3,7 @@ import { dummy_data } from "../Dummy";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import styles from "./ProductsCarousel.module.css";
+import "./ProductsCarousel.css";
 import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi";
 import { Button, IconButton, useBreakpointValue } from "@chakra-ui/react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
@@ -12,7 +12,17 @@ import Product from "../../Components/Product";
 class CustomSlide extends Component {
 	render() {
 		const { index, ele } = this.props;
-		console.log(ele);
+		const {
+			id,
+			brand,
+			category,
+			api_featured_image,
+			name,
+			price,
+			product_colors,
+			product_type,
+		} = ele;
+		// console.log(ele);
 		return (
 			// <div className={styles.card} style={{ margin: "0 10px" }}>
 			// 	<div className={styles.cardTop}>
@@ -22,7 +32,17 @@ class CustomSlide extends Component {
 			// 		<h1>{ele.name}</h1>
 			// 	</div>
 			// </div>
-			<Product {...ele} />
+			<Product
+				key={id}
+				id={id}
+				brand={brand}
+				category={category}
+				api_featured_image={api_featured_image}
+				name={name}
+				price={price}
+				product_colors={product_colors}
+				product_type={product_type}
+			/>
 		);
 	}
 }
@@ -98,7 +118,7 @@ const ProductsCarousel = () => {
 		<div style={{ width: "80%", margin: "auto" }}>
 			<Slider {...settings}>
 				{dummy_data.map((ele, index) => {
-					return <CustomSlide index={index} ele={ele} key={index} />;
+					return <CustomSlide index={index} ele={ele} key={ele.id} />;
 				})}
 			</Slider>
 		</div>

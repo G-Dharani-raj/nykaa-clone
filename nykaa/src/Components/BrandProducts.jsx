@@ -37,10 +37,12 @@ const BrandProducts = () => {
 					price,
 					product_colors,
 					product_type,
+					description,
 				}) => {
 					return (
 						<Product
 							key={id}
+							id={id}
 							brand={brand}
 							category={category}
 							api_featured_image={api_featured_image}
@@ -48,6 +50,7 @@ const BrandProducts = () => {
 							price={price}
 							product_colors={product_colors}
 							product_type={product_type}
+							description={description}
 						/>
 					);
 				}

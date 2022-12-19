@@ -1,0 +1,12 @@
+.sticky {
+	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);
+	position: sticky;
+	top: 0;
+	margin-top: 10%;
+	z-index: 100;
+	/* width: 20%; */
+}
+.sidebar {
+	width: 20%;
+	/* margin-top: 10%; */
+}

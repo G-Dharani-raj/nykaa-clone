@@ -52,7 +52,7 @@ const TopBrands = () => {
 	];
 	return (
 		<SimpleGrid
-			columns={{ base: 3, sm: 2, lg: 3 }}
+			columns={{ base: 1, sm: 2, lg: 3 }}
 			spacing={5}
 			w={"80%"}
 			m={"auto"}

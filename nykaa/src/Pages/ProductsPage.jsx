@@ -10,8 +10,10 @@ const ProductsPage = () => {
 	const [type, setType] = React.useState(product_type);
 	const [data, setData] = React.useState([]);
 	const [current, setCurrent] = React.useState(1);
+
 	// const [page, setPage] = React.useState(1);
 	React.useEffect(() => {
+		setCurrent(1);
 		try {
 			axios
 				.get(

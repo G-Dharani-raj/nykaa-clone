@@ -42,10 +42,10 @@ export default function SignupPage() {
 				console.log(response);
 				setAuth(true);
 				setToken(response.data.token);
-
+				alert("Signed up successfully!");
 				navigate("/");
 			})
-			.catch((err) => console.log(err));
+			.catch((err) => alert(err.response.data.error));
 	};
 	return (
 		<Flex

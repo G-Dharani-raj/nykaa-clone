@@ -24,6 +24,7 @@ const Sidebar = ({ type, setType }) => {
 	});
 	const handleChange = (value) => {
 		setType(value);
+		setParams({ product_type: value });
 	};
 	return (
 		<Box

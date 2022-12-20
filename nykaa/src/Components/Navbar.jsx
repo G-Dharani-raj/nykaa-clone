@@ -122,12 +122,14 @@ export default function WithSubnavigation() {
 							fontSize={"sm"}
 							fontWeight={600}
 							color={"white"}
-							bg={"pink.400"}
+							bg={"black"}
 							// variant={"link"}
 							href={"#"}
 							onClick={() => navigate("/signup")}
 							_hover={{
-								bg: "pink.300",
+								bg: "white",
+								color: "black",
+								outline: "1px solid black",
 							}}
 						>
 							Sign Up

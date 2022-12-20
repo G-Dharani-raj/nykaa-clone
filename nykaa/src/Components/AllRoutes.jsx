@@ -10,6 +10,7 @@ import SignInpage from "../Pages/SignInpage";
 import SignupPage from "../Pages/SignUpPage";
 import CartPage from "../Pages/CartPage";
 import IndividualProduct from "../Pages/IndividualProduct";
+import PaymentPage from "../Pages/PaymentPage";
 const AllRoutes = () => {
 	return (
 		<Routes>
@@ -24,6 +25,7 @@ const AllRoutes = () => {
 			<Route path="/signin" element={<SignInpage />} />
 			<Route path="/signup" element={<SignupPage />} />
 			<Route path="/cart" element={<CartPage />} />
+			<Route path="/payment" element={<PaymentPage />} />
 			<Route path="/dummy" element={<Dummy />} />
 		</Routes>
 	);

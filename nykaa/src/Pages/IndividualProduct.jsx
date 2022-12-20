@@ -30,9 +30,6 @@ const IndividualProduct = () => {
 		<Flex direction="column">
 			<Image src={api_featured_image} alt={name} width="15%" />
 			<br />
-			<br />
-			<br />
-
 			<Box>
 				{product_colors.length > 0 ? (
 					<Flex gap={4}>
@@ -59,6 +56,7 @@ const IndividualProduct = () => {
 					</Flex>
 				) : null}
 			</Box>
+			<br />
 			<Heading fontSize={"sm"}>{brand}</Heading>
 			<Heading fontSize={"lg"}>{name}</Heading>
 			<Text fontSize={"md"}>${price}</Text>

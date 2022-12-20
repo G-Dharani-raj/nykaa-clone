@@ -88,6 +88,7 @@ export default function Product({
 						bg: "green",
 					}}
 					onClick={() => {
+						alert("Added to cart!");
 						cart.push({
 							id,
 							brand,

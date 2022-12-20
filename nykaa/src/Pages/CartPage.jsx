@@ -13,6 +13,7 @@ import {
 import React from "react";
 import { TbShoppingCartPlus } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../Contexts/AuthContext";
 // import Product from "../Components/Product";
 
 function Product({
@@ -133,12 +134,15 @@ const CartPage = () => {
 	console.log(cart);
 	let total = 0;
 	const [cproducts, setC] = React.useState(false);
+	const { isAuth } = React.useContext(AuthContext);
+	const navigate = useNavigate();
 	const remove_item = (index) => {
 		setC(true);
 		let cart = JSON.parse(localStorage.getItem("cart")) || [];
 		cart.splice(index, 1);
 		localStorage.setItem("cart", JSON.stringify(cart));
 	};
+
 	React.useEffect(() => {
 		setC(false);
 	}, [cproducts]);
@@ -175,7 +179,19 @@ const CartPage = () => {
 						<Text>
 							Total: $<span>{total}</span>
 						</Text>
-						<Button colorScheme="blue">Proceed to Payment</Button>
+						<Button
+							colorScheme="blue"
+							onClick={() => {
+								if (!isAuth) {
+									alert("Please login first");
+									navigate("/signin");
+								} else {
+									navigate("/payment");
+								}
+							}}
+						>
+							Proceed to Payment
+						</Button>
 					</VStack>
 				</Center>
 			</Flex>

@@ -11,6 +11,8 @@ import {
 	Heading,
 	Text,
 	useColorModeValue,
+	Alert,
+	AlertIcon,
 } from "@chakra-ui/react";
 import axios from "axios";
 import React from "react";
@@ -33,11 +35,15 @@ export default function SignInpage() {
 					password: password,
 				})
 				.then((response) => {
-					if (response.status == 200) {
+					if (response.status === 200) {
 						setAuth(true);
 						setToken(response.data.token);
-						alert("Authentication Successful!");
-						navigate("/");
+						// alert("Authentication Successful!");
+
+						// navigate("/");
+						setTimeout(() => {
+							navigate("/");
+						}, 1000);
 					} else {
 						alert(response.status);
 					}
@@ -98,6 +104,12 @@ export default function SignInpage() {
 										Forgot password?
 									</Link>
 								</Stack>
+								{isAuth ? (
+									<Alert status="success">
+										<AlertIcon />
+										Authentication Successful
+									</Alert>
+								) : null}
 								<Button
 									bg={"blue.400"}
 									color={"white"}

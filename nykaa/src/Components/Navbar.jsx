@@ -29,7 +29,7 @@ import Categories from "./Categories";
 import { Link as Rink, Navigate, useNavigate } from "react-router-dom";
 import SignInpage from "../Pages/SignInpage";
 import { AuthContext } from "../Contexts/AuthContext";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 
 export default function WithSubnavigation() {
@@ -38,7 +38,15 @@ export default function WithSubnavigation() {
 	const { isAuth, token, logoutFN, setToken, setAuth } =
 		useContext(AuthContext);
 	let cart = JSON.parse(localStorage.getItem("cart")) || [];
-	cart = cart.length;
+	let cartlen = cart.length;
+	const [note, setNote] = React.useState(false);
+	React.useEffect(() => {
+		if (cartlen > 0) {
+			setNote(true);
+		} else {
+			setNote(false);
+		}
+	}, [cartlen]);
 
 	return (
 		<Box>
@@ -169,7 +177,7 @@ export default function WithSubnavigation() {
 					}}
 				>
 					<HiOutlineShoppingCart />
-					{cart > 0 ? (
+					{note ? (
 						<div
 							style={{
 								height: "8px",

@@ -7,6 +7,7 @@ import {
 	IconButton,
 	Tooltip,
 } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react";
 import "./Product.css";
 import { TbShoppingCartPlus } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
@@ -28,7 +29,7 @@ export default function Product({
 	// const [cart, setCart] = React.useState(
 	// 	JSON.parse(localStorage.getItem("cart")) || []
 	// );
-
+	const toast = useToast();
 	return (
 		<Box
 			bg="#F6F6F6"
@@ -88,7 +89,14 @@ export default function Product({
 						bg: "green",
 					}}
 					onClick={() => {
-						alert("Added to cart!");
+						toast({
+							title: "Added to Cart.",
+							description: "",
+							status: "success",
+							duration: 1000,
+							isClosable: true,
+						});
+						// alert("Added to cart!");
 						cart.push({
 							id,
 							brand,

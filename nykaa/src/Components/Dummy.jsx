@@ -1,4 +1,5 @@
 import { Box, HStack, Image, SimpleGrid, Text, VStack } from "@chakra-ui/react";
+import axios from "axios";
 import React from "react";
 export const dummy_data = [
 	{
@@ -414,6 +415,10 @@ export const dummy_data = [
 	},
 ];
 const Dummy = () => {
+	axios
+		.get(`https://makeup-api.herokuapp.com/api/v1/products.json`)
+		.then((response) => console.log(response))
+		.catch((err) => console.log(err));
 	return (
 		<>
 			<Box

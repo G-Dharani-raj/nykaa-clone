@@ -1,5 +1,6 @@
 import {
 	Box,
+	Button,
 	Center,
 	Container,
 	Flex,
@@ -27,41 +28,46 @@ const IndividualProduct = () => {
 	} = product;
 
 	return (
-		<Flex direction="column">
-			<Image src={api_featured_image} alt={name} width="15%" />
-			<br />
-			<Box>
-				{product_colors.length > 0 ? (
-					<Flex gap={4}>
-						{product_colors.map((ele, i) => {
-							return (
-								<Tooltip label={ele.colour_name}>
-									<div
-										key={i}
-										style={{
-											height: "20px",
-											widht: "20px",
-											backgroundColor: `${ele.hex_value}`,
-											borderRadius: "50%",
-											display: "inline-block",
-										}}
-									>
-										<h1 style={{ visibility: "hidden" }}>
-											tex
-										</h1>
-									</div>
-								</Tooltip>
-							);
-						})}
-					</Flex>
-				) : null}
-			</Box>
-			<br />
-			<Heading fontSize={"sm"}>{brand}</Heading>
-			<Heading fontSize={"lg"}>{name}</Heading>
-			<Text fontSize={"md"}>${price}</Text>
-			<Text>{description}</Text>
-		</Flex>
+		<Container>
+			<Flex direction="column">
+				<Image src={api_featured_image} alt={name} width="80%" />
+				<br />
+				<Box>
+					{product_colors.length > 0 ? (
+						<Flex gap={4}>
+							{product_colors.map((ele, i) => {
+								return (
+									<Tooltip label={ele.colour_name}>
+										<div
+											key={i}
+											style={{
+												height: "20px",
+												widht: "20px",
+												backgroundColor: `${ele.hex_value}`,
+												borderRadius: "50%",
+												display: "inline-block",
+											}}
+										>
+											<h1
+												style={{ visibility: "hidden" }}
+											>
+												tex
+											</h1>
+										</div>
+									</Tooltip>
+								);
+							})}
+						</Flex>
+					) : null}
+				</Box>
+				<br />
+				<Heading fontSize={"sm"}>{brand}</Heading>
+				<Heading fontSize={"lg"}>{name}</Heading>
+				<Text fontSize={"md"}>${price}</Text>
+				<Text>{description}</Text>
+				<Button colorScheme={"red"}>Add to Cart</Button>
+			</Flex>
+		</Container>
 	);
 };
 
